@@ -7,6 +7,9 @@ export default function PartWithColors() {
   const [green, setGreen] = useState("255");
   const [blue, setBlue] = useState("255");
 
+  const [textColor, setTextColor] = useState(null);
+  const [bgColor, setBgColor] = useState(true);
+
   function handleChangeValue(e) {
     if (e.target.name == "red") {
       return setRed(e.target.value);
@@ -14,6 +17,21 @@ export default function PartWithColors() {
       return setGreen(e.target.value);
     } else setBlue(e.target.value);
   }
+
+  function handleChangeBtnColor(e) {
+    e.preventDefault();
+    console.log(e.target.id);
+    if (e.target.id == "textColor") {
+      setTextColor(true);
+      setBgColor(null);
+    } else setTextColor(null);
+    setBgColor(true);
+  }
+
+  const text = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae
+dolorum quisquam, deserunt recusandae harum earum inventore dolor labore
+magnam, aliquid sit. Aperiam, quidem ullam aliquid doloribus architecto
+sunt delectus.`;
 
   return (
     <>
@@ -69,22 +87,42 @@ export default function PartWithColors() {
           </Form.Group>
         </Form>
         <div className={style.btns}>
-          <Button className={style.textColor} variant="outline-success">
+          <Button
+            className={style.textColor}
+            id="textColor"
+            variant="outline-success"
+            onClick={handleChangeBtnColor}
+          >
             Text color
           </Button>
-          <Button variant="outline-warning">BG-Color</Button>
+
+          <Button
+            id="bgColor"
+            variant="outline-warning"
+            onClick={handleChangeBtnColor}
+          >
+            BG-Color
+          </Button>
         </div>
       </div>
 
-      <div
-        className={style.text}
-        style={{ background: `rgb(${red},${green},${blue})` }}
-      >
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae
-        dolorum quisquam, deserunt recusandae harum earum inventore dolor labore
-        magnam, aliquid sit. Aperiam, quidem ullam aliquid doloribus architecto
-        sunt delectus.
-      </div>
+      {textColor ? (
+        <div className={style.conteinerText}>
+          <p
+            className={style.text}
+            style={{ color: `rgb(${red},${green},${blue})` }}
+          >
+            {text}
+          </p>
+        </div>
+      ) : (
+        <div
+          className={style.conteinerText}
+          style={{ background: `rgb(${red},${green},${blue})` }}
+        >
+          <p className={style.text}>{text}</p>
+        </div>
+      )}
     </>
   );
 }
