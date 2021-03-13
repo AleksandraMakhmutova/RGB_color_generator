@@ -1,37 +1,46 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "./style.module.css";
 import { Form, Button } from "react-bootstrap";
+import text from "./text.js";
 
 export default function PartWithColors() {
   const [red, setRed] = useState("255");
   const [green, setGreen] = useState("255");
   const [blue, setBlue] = useState("255");
 
+  const [redText, setRedText] = useState("0");
+  const [greenText, setGreenText] = useState("0");
+  const [blueText, setBlueText] = useState("0");
+
   const [textColor, setTextColor] = useState(null);
   const [bgColor, setBgColor] = useState(true);
 
   function handleChangeValue(e) {
     if (e.target.name == "red") {
-      return setRed(e.target.value);
+      if (textColor) {
+        setRedText(e.target.value);
+      } else setRed(e.target.value);
     } else if (e.target.name == "green") {
-      return setGreen(e.target.value);
-    } else setBlue(e.target.value);
+      if (textColor) {
+        setGreenText(e.target.value);
+      } else setGreen(e.target.value);
+    } else if (e.target.name == "blue") {
+      if (textColor) {
+        setBlueText(e.target.value);
+      } else setBlue(e.target.value);
+    }
   }
 
   function handleChangeBtnColor(e) {
     e.preventDefault();
-    console.log(e.target.id);
     if (e.target.id == "textColor") {
       setTextColor(true);
       setBgColor(null);
-    } else setTextColor(null);
-    setBgColor(true);
+    } else {
+      setTextColor(null);
+      setBgColor(true);
+    }
   }
-
-  const text = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae
-dolorum quisquam, deserunt recusandae harum earum inventore dolor labore
-magnam, aliquid sit. Aperiam, quidem ullam aliquid doloribus architecto
-sunt delectus.`;
 
   return (
     <>
@@ -41,7 +50,11 @@ sunt delectus.`;
         <input
           type="text"
           className={style.box}
-          value={`rgb(${red},${green},${blue})`}
+          value={
+            textColor
+              ? `rgb(${redText},${greenText},${blueText})`
+              : `rgb(${red},${green},${blue})`
+          }
         />
         <Form className={style.input}>
           <Form.Group>
@@ -50,7 +63,7 @@ sunt delectus.`;
               type="range"
               className={style.red}
               id={style.red}
-              value={red}
+              value={textColor ? redText : red}
               name="red"
               min="0"
               max="255"
@@ -64,7 +77,7 @@ sunt delectus.`;
             <Form.Control
               type="range"
               id={style.green}
-              value={green}
+              value={textColor ? greenText : green}
               min="0"
               max="255"
               name="green"
@@ -78,7 +91,7 @@ sunt delectus.`;
             <Form.Control
               type="range"
               id={style.blue}
-              value={blue}
+              value={textColor ? blueText : blue}
               min="0"
               max="255"
               name="blue"
@@ -107,10 +120,13 @@ sunt delectus.`;
       </div>
 
       {textColor ? (
-        <div className={style.conteinerText}>
+        <div
+          className={style.conteinerText}
+          style={{ background: `rgb(${red},${green},${blue})` }}
+        >
           <p
             className={style.text}
-            style={{ color: `rgb(${red},${green},${blue})` }}
+            style={{ color: `rgb(${redText},${greenText},${blueText})` }}
           >
             {text}
           </p>
@@ -120,7 +136,12 @@ sunt delectus.`;
           className={style.conteinerText}
           style={{ background: `rgb(${red},${green},${blue})` }}
         >
-          <p className={style.text}>{text}</p>
+          <p
+            className={style.text}
+            style={{ color: `rgb(${redText},${greenText},${blueText})` }}
+          >
+            {text}
+          </p>
         </div>
       )}
     </>
