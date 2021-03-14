@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/RGB_color_generator/static/css/main.585a93c0.chunk.css",
+    "main.js": "/RGB_color_generator/static/js/main.6238b940.chunk.js",
+    "main.js.map": "/RGB_color_generator/static/js/main.6238b940.chunk.js.map",
+    "runtime-main.js": "/RGB_color_generator/static/js/runtime-main.85fa2f91.js",
+    "runtime-main.js.map": "/RGB_color_generator/static/js/runtime-main.85fa2f91.js.map",
+    "static/js/2.dd7fa7d0.chunk.js": "/RGB_color_generator/static/js/2.dd7fa7d0.chunk.js",
+    "static/js/2.dd7fa7d0.chunk.js.map": "/RGB_color_generator/static/js/2.dd7fa7d0.chunk.js.map",
+    "index.html": "/RGB_color_generator/index.html",
+    "static/css/main.585a93c0.chunk.css.map": "/RGB_color_generator/static/css/main.585a93c0.chunk.css.map",
+    "static/js/2.dd7fa7d0.chunk.js.LICENSE.txt": "/RGB_color_generator/static/js/2.dd7fa7d0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.85fa2f91.js",
+    "static/js/2.dd7fa7d0.chunk.js",
+    "static/css/main.585a93c0.chunk.css",
+    "static/js/main.6238b940.chunk.js"
+  ]
+}
